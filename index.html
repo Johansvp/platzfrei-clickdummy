@@ -862,12 +862,11 @@ body{font-family:'Mulish',sans-serif;background:#d8dce2;}
     var naturalW = diagram.offsetWidth;
     var naturalH = diagram.offsetHeight;
     var headerH = header.offsetHeight;
-    var availW = window.innerWidth - 24;
-    var availH = window.innerHeight - headerH - 16;
-    var scaleX = availW / naturalW;
-    var scaleY = availH / naturalH;
-    diagram.style.transform = 'scale(' + scaleX + ',' + scaleY + ')';
-    canvas.style.height = (naturalH * scaleY + 8) + 'px';
+    var availW = window.innerWidth - 40;
+    var availH = window.innerHeight - headerH - 30;
+    var scale = Math.min(availW / naturalW, availH / naturalH, 1);
+    diagram.style.transform = 'scale(' + scale + ')';
+    canvas.style.height = (naturalH * scale + 20) + 'px';
     positionCloseButton();
   }
   window.addEventListener('resize', fitDiagram);
